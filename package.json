@@ -1,0 +1,23 @@
+{
+  "name": "canvases",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamczarnecki/canvases.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamczarnecki/canvases/issues"
+  },
+  "homepage": "https://github.com/adamczarnecki/canvases#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-string-replace": "^1.1.2"
+  }
+}
