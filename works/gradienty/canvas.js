@@ -1,4 +1,5 @@
 const canvas = document.querySelector('#main')
+// dostosowywanie rozmiaru canvas
 const ctx = canvas.getContext("2d");
 const clearCanvas = () => {
     ctx.fillStyle = "#fff";
