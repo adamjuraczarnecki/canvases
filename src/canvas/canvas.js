@@ -6,6 +6,7 @@ elementWidth -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle
 canvas.height = elementWidth
 canvas.width = elementWidth
 console.log(elementWidth)
+// clear canvas
 const ctx = canvas.getContext("2d");
 const clearCanvas = () => {
     ctx.fillStyle = "#fff";
@@ -13,3 +14,20 @@ const clearCanvas = () => {
     ctx.fillStyle = '#000'
 }
 clearCanvas()
+
+// For animation:
+const FPS = 90
+
+const theLloop = (time) => {
+    requestAnimationFrame(theLloop)
+    if (time - lastTime >= 1000 / FPS) {
+        lastTime = time
+        clearCanvas()
+        // render stuff
+        // boxes.forEach(x => x.oneStep())
+    }
+
+}
+// initiation of the loop
+let lastTime = 0
+loop()

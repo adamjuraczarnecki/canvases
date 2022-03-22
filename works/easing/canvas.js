@@ -103,7 +103,6 @@ const loop = (time) => {
         clearCanvas()
         boxes.forEach(x => x.oneStep())
     }
-    boxes.forEach(x => x.oneStep())
 }
 
 let lastTime = 0
