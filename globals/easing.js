@@ -1,6 +1,6 @@
 // Wszystkie wzory bazują na wzorach Roberta Pennera (http://robertpenner.com/easing/) i zachowują klasyczne nazewnictwo.
 // Ja jedynie oczyściłem kilka parametrów aby zachować czytelność.
-Easing = {
+export const Easing = {
 	// Dwie pierwsze metowy zwracają wartość w podanym momencie trwania animacji.
 	// get() zwraca wartość niecałkowitą, a getRound() zwraca zaokrągloną wartość do najbliższej liczby całkowitej.
 	// 
@@ -67,7 +67,7 @@ Easing = {
 		return 1/2*((t-=2)*t*t*t*t + 2);
 	},
 	easeInSine: function (t, d) {
-		return -Math.cos(t/d * (Math.PI/2));
+		return 1 - Math.cos(t/d * (Math.PI/2));
 	},
 	easeOutSine: function (t, d) {
 		return Math.sin(t/d * (Math.PI/2));

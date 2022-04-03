@@ -71,11 +71,6 @@ div {
   margin-top: 1em;
 }
 
-span {
-  color: #fff;
-  text-shadow: 0 0 5px #ffffff;
-}
-
 li:before {
   content: '*';
   font-family: "Source Code Pro", monospace;
