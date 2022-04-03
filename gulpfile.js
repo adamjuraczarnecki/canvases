@@ -39,7 +39,7 @@ const new_canva = (cb) => {
     .pipe(dest(path))
 
   const index = src('index.html')
-    .pipe(replace('      <!-- end menu list -->', `      <li><a href="${path}/index.html">${name}</a></li>\n      <!-- end menu list -->`))
+    .pipe(replace('      <!-- end menu list -->', `      <li><a href="${path}/">${name}</a></li>\n      <!-- end menu list -->`))
     .pipe(dest('./'))  
   cb()
 }
