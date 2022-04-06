@@ -18,8 +18,6 @@ globalThis.FPS = 90
 globalThis.totalTime = 2000
 globalThis.global_r = 40
 globalThis.current_r = global_r
-let source_x = 0.5
-let source_y = 0.5
 let touches = []
 // END CONFIG
 // create controls:
@@ -104,19 +102,31 @@ const randomBetween = (min, max) => Math.floor(Math.random() * (max - min + 1) +
 
 readGlobals()
 resetCanvas()
-
+const isTouchDevice = () => {
+    return (('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0));
+}
 const onMove = (e) => {
     touches = []
-    e.preventDefault()
-    console.log(e.touches.length)
     const rect = e.target.getBoundingClientRect()
-    for (let i = 0; i < e.touches.length; i++) {
-        touches.push({
-            x: (e.touches.item(i).clientX - rect.left) / canvas.width,
-            y: (e.touches.item(i).clientY - rect.top) / canvas.height
-        })
+    if (isTouchDevice()) {
+        e.preventDefault()
+        for (let i = 0; i < e.touches.length; i++) {
+            touches.push({
+                x: (e.touches.item(i).clientX - rect.left) / canvas.width,
+                y: (e.touches.item(i).clientY - rect.top) / canvas.height
+            })
+        }
+        current_r = Math.max(10, current_r - 1)
+    } else {
+        if (e.type === 'mousedown') {
+            touches.push({
+                x: (e.clientX - rect.left) / canvas.width,
+                y: (e.clientY - rect.top) / canvas.height
+            })
+        }
     }
-    current_r = Math.max(10, current_r - 1)
 }
 
 
@@ -126,6 +136,8 @@ const isVisible = (x) => {
 canvas.addEventListener('touchstart', onMove, false)
 canvas.addEventListener('touchmove', onMove, false)
 canvas.addEventListener('touchend', onMove, false)
+canvas.addEventListener('mousemove', onMove, false)
+canvas.addEventListener('mousedown', onMove, false)
 globalThis.allBoxes = []
 const loop = (time) => {
     requestAnimationFrame(loop)
