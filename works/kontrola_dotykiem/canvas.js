@@ -142,7 +142,7 @@ const loop = (time) => {
                         current_r / 100,
                         randomBetween(0, 360),
                         totalTime,
-                        randomBetween(4, 15),
+                        randomBetween(2, 8),
                         [255, randomBetween(0, 240), randomBetween(0, 100)],
                         easingName
                     ))
