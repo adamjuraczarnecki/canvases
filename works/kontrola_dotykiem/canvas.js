@@ -107,14 +107,14 @@ resetCanvas()
 
 const onMove = (e) => {
     touches = []
+    console.log(e.touches.length)
     const rect = e.target.getBoundingClientRect()
-    e.touches.forEach(x=>{
+    for (let i = 0; i < e.touches.length; i++) {
         touches.push({
-            x: (e.clientX - rect.left) / canvas.width,
-            y: (e.clientY - rect.top) / canvas.height
+            x: (e.touches.item(i).clientX - rect.left) / canvas.width,
+            y: (e.touches.item(i).clientY - rect.top) / canvas.height
         })
-    })
-
+    }
     current_r = Math.max(10, current_r - 1)
 }
 
