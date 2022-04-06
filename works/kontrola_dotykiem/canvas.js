@@ -18,9 +18,9 @@ globalThis.FPS = 90
 globalThis.totalTime = 2000
 globalThis.global_r = 40
 globalThis.current_r = global_r
-globalThis.mouseFlag = false
 let source_x = 0.5
 let source_y = 0.5
+let touches = []
 // END CONFIG
 // create controls:
 document.querySelector('section').style.display = 'block'
@@ -106,9 +106,15 @@ readGlobals()
 resetCanvas()
 
 const onMove = (e) => {
+    touches = []
     const rect = e.target.getBoundingClientRect()
-    source_x = (e.clientX - rect.left) / canvas.width
-    source_y = (e.clientY - rect.top) / canvas.height
+    e.touches.forEach(x=>{
+        touches.push({
+            x: (e.clientX - rect.left) / canvas.width,
+            y: (e.clientY - rect.top) / canvas.height
+        })
+    })
+
     current_r = Math.max(10, current_r - 1)
 }
 
@@ -116,9 +122,9 @@ const onMove = (e) => {
 const isVisible = (x) => {
     return x.currentTime <= x.totalTime
 }
-canvas.addEventListener('mouseover', () => {mouseFlag=true})
-canvas.addEventListener('mouseout ', () => {mouseFlag=false})
-canvas.addEventListener('mousemove', onMove, false)
+canvas.addEventListener('touchstart', onMove, false)
+canvas.addEventListener('touchmove', onMove, false)
+canvas.addEventListener('touchend', onMove, false)
 globalThis.allBoxes = []
 const loop = (time) => {
     requestAnimationFrame(loop)
@@ -126,17 +132,21 @@ const loop = (time) => {
         lastTime = time
         clearCanvas()
         readGlobals()
-        for (let i = 0; i < 3; i++) {
-            allBoxes.push(new Box(
-                source_x,
-                source_y,
-                current_r / 100,
-                randomBetween(0, 360),
-                totalTime,
-                randomBetween(4, 15),
-                [255, randomBetween(0, 240), randomBetween(0, 100)],
-                easingName
-            ))
+        if (touches) {
+            touches.forEach(x => {
+                for (let i = 0; i < 3; i++) {
+                    allBoxes.push(new Box(
+                        x.x,
+                        x.y,
+                        current_r / 100,
+                        randomBetween(0, 360),
+                        totalTime,
+                        randomBetween(4, 15),
+                        [255, randomBetween(0, 240), randomBetween(0, 100)],
+                        easingName
+                    ))
+                }
+            })
         }
         allBoxes.forEach(x => x.oneStep())
         allBoxes = allBoxes.filter(isVisible)

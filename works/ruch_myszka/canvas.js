@@ -18,7 +18,6 @@ globalThis.FPS = 90
 globalThis.totalTime = 2000
 globalThis.global_r = 40
 globalThis.current_r = global_r
-globalThis.mouseFlag = false
 let source_x = 0.5
 let source_y = 0.5
 // END CONFIG
@@ -116,8 +115,6 @@ const onMove = (e) => {
 const isVisible = (x) => {
     return x.currentTime <= x.totalTime
 }
-canvas.addEventListener('mouseover', () => {mouseFlag=true})
-canvas.addEventListener('mouseout ', () => {mouseFlag=false})
 canvas.addEventListener('mousemove', onMove, false)
 globalThis.allBoxes = []
 const loop = (time) => {
