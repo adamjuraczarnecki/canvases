@@ -107,6 +107,7 @@ resetCanvas()
 
 const onMove = (e) => {
     touches = []
+    e.preventDefault()
     console.log(e.touches.length)
     const rect = e.target.getBoundingClientRect()
     for (let i = 0; i < e.touches.length; i++) {
