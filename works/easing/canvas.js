@@ -3,12 +3,16 @@ import { Box } from './box.js'
 
 globalThis.canvas = document.querySelector('#main')
 // dostosowywanie rozmiaru canvas
-const computedStyle = getComputedStyle(canvas.parentNode)
-let elementWidth = canvas.parentNode.clientWidth
-elementWidth -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight)
-canvas.height = elementWidth
-canvas.width = elementWidth
-console.log(elementWidth)
+const layout = (event) => {
+    const computedStyle = getComputedStyle(canvas.parentNode)
+    let elementWidth = canvas.parentNode.clientWidth
+    elementWidth -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight)
+    canvas.height = elementWidth
+    canvas.width = elementWidth
+    console.log(elementWidth)
+}
+layout()
+window.addEventListener('resize', layout, false)
 globalThis.ctx = canvas.getContext("2d")
 // CONFIG CONSTS
 const colors = ['#390099', '#9E0059', '#FF0054', '#FF5400', '#FFBD00']
