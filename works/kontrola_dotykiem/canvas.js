@@ -125,6 +125,7 @@ const onMove = (e) => {
                 x: (e.clientX - rect.left) / canvas.width,
                 y: (e.clientY - rect.top) / canvas.height
             })
+            current_r = Math.max(10, current_r - 1)
         }
     }
 }
