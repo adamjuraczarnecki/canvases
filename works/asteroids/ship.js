@@ -12,7 +12,7 @@ export class Ship {
         this.modY = 0
         this.acc = 0.0004
         this.maxMod = 0.019
-        this.points = [{}, {}, {}]
+        this.points = [{ id: 1 }, { id: 2 }, { id: 3 }]
     }
 
     draw() {
@@ -106,15 +106,16 @@ export class Ship {
     }
 
     hitTest() {
-        for (let i = 0; i < this.points.length; i++) {
+        this.points.forEach((point, i) => {
             return Object.entries(Rock.all).some(([id, rock]) => {
-                if (rock.hitTest(this.points[i].x, this.points[i].y)) {
+                if (rock.hitTest(point.x, point.y)) {
+                    console.log(point)
                     rock.remove()
                     this.detroyed = true
                     Game.stop()
                 }
             })
-        }
+        })
     }
 
 }
