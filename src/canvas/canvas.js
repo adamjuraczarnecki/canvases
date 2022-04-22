@@ -34,4 +34,4 @@ const theLloop = (time) => {
 }
 // initiation of the loop
 let lastTime = 0
-loop()
+theLloop()

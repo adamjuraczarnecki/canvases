@@ -18,8 +18,8 @@ globalThis.FPS = 90
 globalThis.totalTime = 2000
 globalThis.global_r = 40
 globalThis.current_r = global_r
-let source_x = 0.5
-let source_y = 0.5
+let source_x 
+let source_y 
 // END CONFIG
 // create controls:
 document.querySelector('section').style.display = 'block'
@@ -111,11 +111,16 @@ const onMove = (e) => {
     current_r = Math.max(10, current_r - 1)
 }
 
+const mouseOut = (e) => {
+    source_x = undefined
+    source_y = undefined
+}
 
 const isVisible = (x) => {
     return x.currentTime <= x.totalTime
 }
 canvas.addEventListener('mousemove', onMove, false)
+canvas.addEventListener('mouseout', mouseOut, false)
 globalThis.allBoxes = []
 const loop = (time) => {
     requestAnimationFrame(loop)
