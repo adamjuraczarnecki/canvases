@@ -12,9 +12,9 @@ export class Rock {
         Rock.count++
         this.id = Rock.count.toString()
         Rock.all[this.id] = this
-        this.size = size ?? 2
-        this.x = x ?? (VAR.rand(0, 1) ? VAR.rand(0, 3) / 100 : VAR.rand(7, 10) / 10) * VAR.w
-        this.y = y ?? (VAR.rand(0, 1) ? VAR.rand(0, 3) / 100 : VAR.rand(7, 10) / 10) * VAR.h
+        this.size = size ? ? 2
+        this.x = x ? ? (VAR.rand(0, 1) ? VAR.rand(0, 3) / 100 : VAR.rand(7, 10) / 10) * VAR.w
+        this.y = y ? ? (VAR.rand(0, 1) ? VAR.rand(0, 3) / 100 : VAR.rand(7, 10) / 10) * VAR.h
         this.r = Rock.data[this.size].r
         // mod
         this.modX = Rock.data[this.size].speed * VAR.rand(1, 10) * (VAR.rand(0, 1) ? 1 : -1)
@@ -24,6 +24,8 @@ export class Rock {
         let a = 0
         while (a < 360) {
             a += VAR.rand(Rock.data[this.size].minAngle, Rock.data[this.size].maxAngle)
+            // fix na pryszcze na kamieniach
+            if (a > 360) { a = 360 }
             this.points.push({
                 x: Math.sin(VAR.rad(a)) * this.r,
                 y: Math.cos(VAR.rad(a)) * this.r
