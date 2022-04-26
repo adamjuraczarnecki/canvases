@@ -1,7 +1,7 @@
 import { Game } from './game.js'
 
 globalThis.VAR = {
-    fps: 180,
+    fps: 75,
     w: 0,
     h: 0,
     lastTime: 0,

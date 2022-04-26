@@ -1,5 +1,6 @@
 import { Game } from './game.js'
 import { Rock } from './rock.js'
+import { Sounds } from './sounds.js'
 
 export class Ship {
     constructor() {
@@ -16,7 +17,6 @@ export class Ship {
     }
 
     draw() {
-
         if (!this.detroyed) {
             this.hitTest()
             if (Game.key_37 || Game.key_39) {
@@ -89,6 +89,17 @@ export class Ship {
                 Game.ctx.strokeStyle = 'white'
             } else if (Game.key_40 && !this.draw_thrust) {
                 this.draw_thrust = true;
+            }
+
+            if (Game.key_38 && (!Game.thrust_sound || Game.thrust_sound <= 0)) {
+                // ustaw oĻóźnienie na 60
+                Game.thrust_sound = 60
+                // odtwórz dźwięk
+                Sounds.play('thrust')
+            } else if (Game.key_38 && Game.thrust_sound) { // jeśli gracz wciska gaz ale thrust_sound jest większy niż zero zmniejsz go o ilość milisekund mieszczącą się w jednej klatce
+                Game.thrust_sound -= 1000 / VAR.fps
+            } else if (!Game.key_38) { // jeśli gracz nie wciska gazu ustaw thrust_sound na false
+                Game.thrust_sound = false
             }
 
             // wychodzenie za krawędź

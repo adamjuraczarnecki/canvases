@@ -1,5 +1,6 @@
 import { Game } from './game.js'
 import { Rock } from './rock.js'
+import { Sounds } from './sounds.js'
 
 export class Bullet {
     static max = 5
@@ -21,6 +22,7 @@ export class Bullet {
             this.y = Game.ship.y
             this.modX = Math.sin(VAR.rad(this.a)) * Bullet.speed * VAR.d
             this.modY = -Math.cos(VAR.rad(this.a)) * Bullet.speed * VAR.d
+            Sounds.play('laser')
         }
     }
     static draw() {

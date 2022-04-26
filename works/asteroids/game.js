@@ -1,6 +1,9 @@
 import { Ship } from './ship.js'
 import { Bullet } from './bullet.js'
 import { Rock } from './rock.js'
+import { Dot } from './dot.js'
+import { Sounds } from './sounds.js'
+
 
 export const Game = {
     init: () => {
@@ -12,6 +15,7 @@ export const Game = {
         // Game.canvas.parentNode.appendChild(Game.hit_canvas)
         Game.layout()
         Game.clearCanvas()
+        Sounds.init()
         Game.ship = new Ship()
         window.addEventListener('keydown', Game.onKey, false)
         window.addEventListener('keyup', Game.onKey, false)
@@ -51,6 +55,7 @@ export const Game = {
             Game.ship.draw()
             Rock.draw()
             Bullet.draw()
+            Dot.draw()
         }
     },
     onKey: (e) => {

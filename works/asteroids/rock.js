@@ -1,4 +1,7 @@
 import { Game } from './game.js'
+import { Dot } from './dot.js'
+import { Sounds } from './sounds.js'
+
 
 export class Rock {
     static count = 0
@@ -12,9 +15,9 @@ export class Rock {
         Rock.count++
         this.id = Rock.count.toString()
         Rock.all[this.id] = this
-        this.size = size ? ? 2
-        this.x = x ? ? (VAR.rand(0, 1) ? VAR.rand(0, 3) / 100 : VAR.rand(7, 10) / 10) * VAR.w
-        this.y = y ? ? (VAR.rand(0, 1) ? VAR.rand(0, 3) / 100 : VAR.rand(7, 10) / 10) * VAR.h
+        this.size = size ?? 2
+        this.x = x ?? (VAR.rand(0, 1) ? VAR.rand(0, 3) / 100 : VAR.rand(7, 10) / 10) * VAR.w
+        this.y = y ?? (VAR.rand(0, 1) ? VAR.rand(0, 3) / 100 : VAR.rand(7, 10) / 10) * VAR.h
         this.r = Rock.data[this.size].r
         // mod
         this.modX = Rock.data[this.size].speed * VAR.rand(1, 10) * (VAR.rand(0, 1) ? 1 : -1)
@@ -72,7 +75,10 @@ export class Rock {
                 new Rock(this.size - 1, this.x, this.y)
             }
         }
+        Dot.add(this.x, this.y)
+        Sounds.play(`bum${VAR.rand(1,2)}`)
         delete Rock.all[this.id]
+
     }
     static draw() {
         Rock.num = 0
@@ -80,5 +86,11 @@ export class Rock {
             Rock.num++
             rock.draw()
         })
+
+        if (Rock.num === 0 && !Game.success) {
+            Game.success = true;
+            Sounds.play('win')
+            console.log('gewonen')
+        }
     }
 }
