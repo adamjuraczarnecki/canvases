@@ -149,7 +149,6 @@ export const Game = {
         }
     },
     whoWon: () => {
-        console.log(Game.current_move)
         if (Game.current_move > -1) {
             const winingDiag = Field.values[Game.current_move % 2]
             return VAR.wining.some(x => x.every(i => Field.all[i].value === winingDiag))
