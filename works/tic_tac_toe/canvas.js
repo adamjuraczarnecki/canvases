@@ -80,7 +80,7 @@ export const Game = {
         Game.ctx.fillStyle = VAR.background
         Game.ctx.fillRect(0, 0, Game.canvas.width, Game.canvas.height)
         Game.ctx.fillStyle = VAR.fill
-        Game.ctx.lineWidth = 15
+        Game.ctx.lineWidth = 15*(VAR.d/698)
         Game.ctx.lineCap = 'round'
     },
     animaitonLoop: (time) => {
@@ -172,7 +172,7 @@ export const Game = {
         Game.ctx.fillStyle = 'rgba(150,150,150,0.7)'
         Game.ctx.fillRect(0, 0, Game.canvas.width, Game.canvas.height)
         Game.ctx.fillStyle = VAR.background
-        Game.ctx.font = `40px Arial`
+        Game.ctx.font = `${40*(VAR.d/698)}px Arial`
         Game.ctx.textAlign = 'center'
         if (Game.playerWon || Game.aiWon) {
             Game.ctx.fillText(`" ${Field.values[Game.current_move % 2].toUpperCase()} " won`, VAR.d / 2, VAR.d / 3)
