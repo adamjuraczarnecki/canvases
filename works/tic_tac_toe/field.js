@@ -18,6 +18,10 @@ export class Field {
         this.value = ' '
         Field.all.push(this)
     }
+    recalculatePositions(){
+        this.x = VAR.d * VAR.margin + VAR.field_width * this.gridX
+        this.y = VAR.d * VAR.margin + VAR.field_width * this.gridY
+    }
     draw() {
         // Game.ctx.fillText(this.index, this.x, this.y + VAR.field_width)
         if (this.value) {
@@ -44,11 +48,18 @@ export class Field {
         }
     }
     static draw() {
-        Game.ctx.font = `40px Arial`
         Field.all.forEach(f => {
             f.draw()
             // console.log(f)
         })
 
     }
+    static recalculatePositions() {
+        Game.ctx.font = `40px Arial`
+        Field.all.forEach(f => {
+            f.recalculatePositions()
+        })
+
+    }
+
 }

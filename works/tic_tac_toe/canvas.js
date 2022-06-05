@@ -60,6 +60,7 @@ export const Game = {
         VAR.d = Math.min(VAR.h, VAR.w)
         VAR.board_width = VAR.d - (VAR.d * VAR.margin) * 2
         VAR.field_width = VAR.board_width / 3
+        Field.recalculatePositions()
     },
     drawBoard: () => {
         Game.ctx.beginPath()
