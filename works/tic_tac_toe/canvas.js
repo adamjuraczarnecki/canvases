@@ -1,6 +1,41 @@
 import { Field } from './field.js'
-import { ai } from './ai.js'
+import { ai, SimBoard } from './ai.js'
 import { Sounds, Sounds1 } from './sounds.js'
+document.querySelector('section').style.display = 'block'
+document.querySelector('section div').style.display = 'block'
+document.querySelector('section h3').innerText = 'Adjust difficult level'
+const levels = [
+    { name: 'Easy', default: false },
+    { name: 'Medium', default: false },
+    { name: 'Hard', default: true },
+]
+const controlsWrapper = document.querySelector('section div')
+const radioWrapper = document.createElement('div')
+radioWrapper.style.display = 'grid'
+radioWrapper.style.gridTemplateColumns = 'repeat(3, 1fr)'
+radioWrapper.style.gridGap = '0.6em';
+levels.forEach(level => {
+    const div = document.createElement('div')
+    // div.classList.add('radio')
+    div.style.display = 'flex'
+    div.style.justifyContent = 'center'
+    const label = document.createElement('label')
+    label.innerText = level.name
+    label.setAttribute('for', level.name)
+    const input = document.createElement('input')
+    input.type = 'radio'
+    input.name = 'dificulty'
+    input.value = level.name
+    input.id = level.name
+    if (level.default){
+        input.checked = true
+    }
+    div.appendChild(label)
+    div.appendChild(input)
+    radioWrapper.appendChild(div)
+})
+controlsWrapper.appendChild(radioWrapper)
+controlsWrapper.getP
 
 globalThis.VAR = {
     fps: 75,
@@ -81,7 +116,7 @@ export const Game = {
         Game.ctx.fillStyle = VAR.background
         Game.ctx.fillRect(0, 0, Game.canvas.width, Game.canvas.height)
         Game.ctx.fillStyle = VAR.fill
-        Game.ctx.lineWidth = 15*(VAR.d/698)
+        Game.ctx.lineWidth = 15 * (VAR.d / 698)
         Game.ctx.lineCap = 'round'
     },
     animaitonLoop: (time) => {
