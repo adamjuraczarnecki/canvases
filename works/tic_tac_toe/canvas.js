@@ -3,7 +3,7 @@ import { ai, SimBoard } from './ai.js'
 import { Sounds, Sounds1 } from './sounds.js'
 document.querySelector('section').style.display = 'block'
 document.querySelector('section div').style.display = 'block'
-document.querySelector('section h3').innerText = 'Adjust difficult level'
+document.querySelector('section h3').innerText = 'Adjust the level of difficulty'
 const levels = [
     { name: 'Easy', default: false },
     { name: 'Medium', default: false },
